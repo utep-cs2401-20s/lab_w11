@@ -17,20 +17,21 @@ public class newSorting {
      * @param arr the array we will sort using quicksort
      */
     private void quicksort(int[] arr) {
-        quicksort(arr, 0);
+        quicksort(arr, 0, arr.length-1);
     }
     /**
      * The recursive helper method that does the sorting using quicksort.
      * Overloads quicksort(int[]).
      * @param a the array to sort
      * @param s the starting index to start swapping
+     * @param e the ending index to stop swapping
      */
-    private void quicksort(int[] a, int s) {
+    private void quicksort(int[] a, int s, int e) {
         //base case: avoid AOoB exception
-        if ( s==a.length ) return;
-        int left = 0, right = a.length-1;
+        if ( s>=e ) return;
+        int left = s, right = e;
         //keep moving up the list until it doesn't belong relative to the pivot: a[s]
-        while ( left<right && a[left]<=a[s] )
+        while ( left<=right && a[left]<=a[s] )
             left++;
         //keep moving down the list until it doesn't belong relative to the pivot: a[s]
         while ( right>=left && a[right]>a[s] )
@@ -38,8 +39,10 @@ public class newSorting {
         //swap, if we can
         if ( left<right )
             swap(a, left, right);
+        swap(a,s,right);
         //recursively repeat the process until sorted
-        quicksort(a,s+1);
+        quicksort(a,s,right-1);
+        quicksort(a,right+1,e);
     }
 
     /**
