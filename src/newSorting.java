@@ -29,16 +29,18 @@ public class newSorting {
     private void quicksort(int[] a, int s, int e) {
         //base case: avoid AOoB exception
         if ( s>=e ) return;
-        int left = s, right = e;
-        //keep moving up the list until it doesn't belong relative to the pivot: a[s]
-        while ( left<=right && a[left]<=a[s] )
-            left++;
-        //keep moving down the list until it doesn't belong relative to the pivot: a[s]
-        while ( right>=left && a[right]>a[s] )
-            right--;
-        //swap, if we can
-        if ( left<right )
-            swap(a, left, right);
+        int left=s+1, right=e;
+        while ( left<=right ) {
+            //keep moving up the list until it doesn't belong relative to the pivot: a[s]
+            while ( left<=e && a[left]<=a[s] )
+                left++;
+            //keep moving down the list until it doesn't belong relative to the pivot: a[s]
+            while ( right>=s && a[right]>a[s] )
+                right--;
+            //swap, if we can
+            if ( left<right )
+                swap(a,left,right);
+        }
         swap(a,s,right);
         //recursively repeat the process until sorted
         quicksort(a,s,right-1);
@@ -52,9 +54,9 @@ public class newSorting {
      * @param p1 the index to swap into
      */
     private void swap(int[] A, int p0, int p1) {
-        A[p0] += A[p1];
-        A[p1] = A[p0] - A[p1];
-        A[p0] -= A[p1];
+        int temp = A[p0];
+        A[p0] = A[p1];
+        A[p1] = temp;
     }
 
     /**

@@ -42,7 +42,8 @@ class newSortingTester {
     }
 
     /* *************** Testing private methods *************** */
-    /* These tests are unit testing private methods that must be made visible and static to run. */
+    /* These tests are unit testing private methods that must be made:
+       visible and/or static to run. */
     @Test
     void test_populate() {
         A = new int[]{4,2,3,8,4,4,1,7,16};
@@ -58,5 +59,12 @@ class newSortingTester {
         A = new int[]{4,2,3,8,4,4,1,7,16};
         //ns.mergeSortedHalves(A,new int[]{2,3,4,4,8},new int[]{1,4,7,16});
         assertArrayEquals(new int[]{1,2,3,4,4,4,7,8,16},A);
+    }
+
+    @Test
+    void test_quicksort() {
+        A = new int[]{500,234,543,64};
+        //ns.quicksort(A);
+        assertArrayEquals(new int[]{64,234,500,543},A);
     }
 }
